@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "Open Sans Condensed";
+  src: url("./fonts/OpenSansCondensed-Light.ttf");
+}
+
+#message {
+  position: absolute;
+  display: flex;
+  color: #00ffa6;
+  top: 5px;
+  width: 100%;
+  justify-content: center;
+  font-family: "Open Sans Condensed";
+  font-size: x-large;
+}
+
 body {
   background-color: #06080f;
   margin: 0;
@@ -24,11 +40,20 @@ body {
   margin-top: 5px;
 }
 
+.wide-row {
+  background: linear-gradient(180deg, 
+    #06080f calc(50% - 1px), 
+    #ff0059 calc(50%), 
+    #06080f calc(50% + 1px)
+    );  
+}
+
 .content {
   height: 100%;
   margin: 0 10px;
   width: 150px;
   position: relative;
+  background-color: #06080f;
 }
 
 .switcher {

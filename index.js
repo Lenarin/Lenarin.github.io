@@ -1,8 +1,8 @@
 var params = new function() {
-    this.smoothingTimeConstant = 0.01;
-    this.minDecibels = -50;
-    this.maxDecibels = -20;
-    this.fftSize = 2048;
+    this.smoothingTimeConstant = 0.0;
+    this.minDecibels = -60;
+    this.maxDecibels = -42;
+    this.fftSize = 256;
     this.decSize = function() {
         if (this.fftSize > 16) {
             this.fftSize /= 2;
@@ -15,6 +15,7 @@ var params = new function() {
     };
     this.color1 = "#00ffa6";
     this.color2 = "#b700ff";
+    this.color3 = "#ff0059";
     this.leftBorder = 0.0;
     this.rightBorder = 1.0;
 }
@@ -191,6 +192,22 @@ handleButtonClick = () => {
 
     matches.forEach(match => {
         var ctx = match.getContext("2d");
+
+        if (match.id === "canvas-7-1") {
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = params.color3;
+        } else {
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = params.color1;
+        };
+
+        ctx.clearRect(0, 0, match.width, match.height);
+
+        ctx.beginPath();
+        ctx.moveTo(0, match.height / 2);
+        ctx.lineTo(match.width, match.height / 2);
+        ctx.stroke();
+
         
         canvases[match.id] = {
             elem: match,
@@ -233,9 +250,6 @@ function test(i) {
 
     var max = 0;
 
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = params.color1;
-
     //var grd=ctx.createLinearGradient(0,0,170,0);
     //grd.addColorStop(0, '#00ffa6');
     //grd.addColorStop(1, '#b700ff');
@@ -255,7 +269,6 @@ function test(i) {
         barWidth = (WIDTH /  (params.rightBorder * bufferLength)) * 2.5;
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        //ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         x = 0;
 
