@@ -28,8 +28,16 @@ body {
   height: 100%;
   margin: 0 10px;
   width: 150px;
-  
+  position: relative;
 }
+
+.switcher {
+  height: 10px;
+  width: 100%;
+  top: 31px;
+  position: absolute;
+}
+
 
 .wide {
   width: 1000px;
@@ -43,6 +51,10 @@ body {
   height: 100px;
 }
 
+.wide .switcher {
+  top: 44px;
+}
+
 #welcome {
   position: absolute;
   width: 100vw;
@@ -51,6 +63,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 }
 
 #welcome_button {
