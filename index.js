@@ -130,6 +130,8 @@ function test(i) {
         if (audio.elem.ended) {
             ctx.globalCompositeOperation = 'source-over';
 
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
             ctx.beginPath();
             ctx.moveTo(0, can.elem.height / 2);
             ctx.lineTo(can.elem.width, can.elem.height / 2);
