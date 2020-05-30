@@ -268,7 +268,9 @@ function test(i) {
         dataArray = new Uint8Array(bufferLength);
         barWidth = (WIDTH /  (params.rightBorder * bufferLength)) * 2.5;
 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        //ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         x = 0;
 
@@ -276,6 +278,7 @@ function test(i) {
         
         ctx.beginPath();
         ctx.moveTo(x, MIDDLE);
+        ctx.globalCompositeOperation = 'destination-out';
         
         for (var i = params.leftBorder * bufferLength; i < params.rightBorder * bufferLength; i++) {
 

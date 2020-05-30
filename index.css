@@ -48,12 +48,16 @@ body {
     );  
 }
 
+.wide-row .content {
+  background: linear-gradient(90deg, #ff0059, #b700ff, #ff0059);  
+}
+
 .content {
   height: 100%;
   margin: 0 10px;
   width: 150px;
   position: relative;
-  background-color: #06080f;
+  background: linear-gradient(90deg, #00ffa6, #b700ff, #00ffa6);
 }
 
 .switcher {
