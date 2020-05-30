@@ -79,6 +79,8 @@ handleButtonClick = () => {
         ctx.globalCompositeOperation = 'source-over';
         ctx.fillRect(0, 0, match.width, match.height);
 
+        ctx.globalCompositeOperation = 'destination-out';
+
         ctx.beginPath();
         ctx.moveTo(0, match.height / 2);
         ctx.lineTo(match.width, match.height / 2);
@@ -97,6 +99,10 @@ handleButtonClick = () => {
 function test(i) {
     var audio = audios[`audio-${i}`];
     var can = canvases[`canvas-${i}`];
+    var grad = audio.elem.parentElement.childNodes[1];
+
+    grad.style.opacity = 1;
+    grad.style.zIndex = 9;
 
     audio.elem.play();
     var analyser = audio.analyser;
@@ -128,14 +134,19 @@ function test(i) {
 
     function renderFrame() {
         if (audio.elem.ended) {
+            grad.style.opacity = 0;
+
             ctx.globalCompositeOperation = 'source-over';
 
             ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.globalCompositeOperation = 'destination-out';
 
             ctx.beginPath();
             ctx.moveTo(0, can.elem.height / 2);
             ctx.lineTo(can.elem.width, can.elem.height / 2);
             ctx.stroke();
+
             return;
         }
 
