@@ -79,8 +79,6 @@ handleButtonClick = () => {
         ctx.globalCompositeOperation = 'source-over';
         ctx.fillRect(0, 0, match.width, match.height);
 
-        ctx.globalCompositeOperation = 'destination-out';
-
         ctx.beginPath();
         ctx.moveTo(0, match.height / 2);
         ctx.lineTo(match.width, match.height / 2);
@@ -129,6 +127,16 @@ function test(i) {
     
 
     function renderFrame() {
+        if (audio.elem.ended) {
+            ctx.globalCompositeOperation = 'source-over';
+
+            ctx.beginPath();
+            ctx.moveTo(0, can.elem.height / 2);
+            ctx.lineTo(can.elem.width, can.elem.height / 2);
+            ctx.stroke();
+            return;
+        }
+
         requestAnimationFrame(renderFrame);
 
         analyser.smoothingTimeConstant = params.smoothingTimeConstant;
