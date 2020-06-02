@@ -24,7 +24,23 @@ var params = new function() {
 var audios = {};
 var canvases = {};
 
+var numAudiosLoaded = 0;
+
+function handleCanAudioPlayThrough() {
+    numAudiosLoaded += 1;
+    
+    if (numAudiosLoaded === 36) {
+        var button = document.querySelectorAll("#welcome_button")[0];   
+        button.classList.add("glow");
+        button.textContent = "Click me!";
+    }
+}
+
 handleButtonClick = () => {
+    if (numAudiosLoaded !== 36) {
+        return;
+    }
+
     var gui = new dat.GUI();
 
     var f1 = gui.addFolder('FFT');
