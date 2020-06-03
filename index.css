@@ -12,6 +12,7 @@
   justify-content: center;
   font-family: "Open Sans Condensed";
   font-size: x-large;
+  z-index: 50;
 }
 
 body {
