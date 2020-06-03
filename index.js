@@ -29,7 +29,7 @@ var numAudiosLoaded = 0;
 function handleCanAudioPlayThrough() {
     numAudiosLoaded += 1;
     
-    if (numAudiosLoaded === 36) {
+    if (numAudiosLoaded === 34) {
         var button = document.querySelectorAll("#welcome_button")[0];   
         button.classList.add("glow");
         button.textContent = "Click me!";
@@ -37,7 +37,7 @@ function handleCanAudioPlayThrough() {
 }
 
 handleButtonClick = () => {
-    if (numAudiosLoaded !== 36) {
+    if (numAudiosLoaded !== 34) {
         return;
     }
 
