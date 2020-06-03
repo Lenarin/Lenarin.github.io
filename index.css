@@ -12,6 +12,11 @@
   justify-content: center;
   font-family: "Open Sans Condensed";
   font-size: x-large;
+  z-index: -1;
+}
+
+#message p {
+  position: relative;
   z-index: 50;
 }
 
