@@ -249,8 +249,8 @@ a {
   100% {
     -webkit-filter: blur(0.007em);
             filter: blur(0.007em);
-    -webkit-transform: translate(0) rotate(-9deg);
-            transform: translate(0) rotate(-9deg);
+    -webkit-transform: translate(0) rotate(-90deg);
+            transform: translate(0) rotate(-90deg);
   }
 }
 
@@ -282,8 +282,8 @@ a {
   100% {
     -webkit-filter: blur(0.007em);
             filter: blur(0.007em);
-    -webkit-transform: translate(0) rotate(-9deg);
-            transform: translate(0) rotate(-9deg);
+    -webkit-transform: translate(0) rotate(-90deg);
+            transform: translate(0) rotate(-90deg);
   }
 }
 
