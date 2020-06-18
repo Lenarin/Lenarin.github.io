@@ -18,6 +18,7 @@ var Modal = (function() {
     var getId = function(event) {
   
       event.preventDefault();
+      
       var self = this;
       // get the value of the data-modal attribute from the button
       var modalId = self.dataset.modal;
@@ -26,8 +27,12 @@ var Modal = (function() {
       var modalIdTrimmed = modalId.substring(1, len);
       // select the modal we want to activate
       var modal = document.getElementById(modalIdTrimmed);
+
+      event.target.childNodes[3].classList.add('anim');
+
+      console.log(event.target.childNodes[3]);
       // execute function that creates the temporary expanding div
-      makeDiv(self, modal);
+      setTimeout(() => makeDiv(self, modal), 300);
     };
   
     var makeDiv = function(self, modal) {
@@ -126,6 +131,7 @@ var Modal = (function() {
       event.stopImmediatePropagation();
   
       var target = event.target;
+
       var div = document.getElementById('modal__temp');
   
       /**
@@ -150,6 +156,7 @@ var Modal = (function() {
                   trigger[i].style.transform = 'none';
           trigger[i].style.webkitTransform = 'none';
                   trigger[i].classList.remove('modal__trigger--active');
+                  trigger[i].childNodes[3].classList.remove('anim');
               }
   
         // when the temporary div is opacity:1 again, we want to remove it from the dom

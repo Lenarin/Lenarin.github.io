@@ -1,11 +1,16 @@
 $modal-z: 1000
 $modal-bg: #ffebee
-$modal-width: 600px
+$modal-width: 100VW
 
 $space: 2.4rem
 $red: #f44336
 
+$background-color: #566573
+$trigger-color: #212F3D
+
 $t: .5s
+
+$trigger-width: 150px
 
 
 @mixin ease($s: $t)
@@ -14,10 +19,14 @@ $t: .5s
 *
     box-sizing: border-box
 
+::-webkit-scrollbar
+    width: 0
+
 body
     line-height: 1.5
     font-family: 'Lato'
     overflow-x: hidden
+    margin: 0
 
 h1, h2, h3, p
     font-weight: 300
@@ -62,19 +71,22 @@ a
 
     &__dialog
         max-width: $modal-width
-        padding: ($space / 2)
+        height: 100%
 
     &__content
-        will-change: transform, opacity
+        will-change: transform, opacity, background-color
         position: relative
         padding: $space
-        background: $modal-bg
+        background-color: $trigger-color
         background-clip: padding-box
         box-shadow: 0 12px 15px 0 rgba(black, 0.25)
         z-index: $modal-z + 1
+        height: 100vh
+        transition: background-color .3s ease-out
 
         &--active
             opacity: 1
+            background-color: $modal-bg
 
     &__close
         z-index: $modal-z+2
@@ -82,22 +94,140 @@ a
 
     &__trigger
         position: relative
-        display: inline-block
-        padding: ($space / 2) $space
+        display: flex
+        align-items: center
+        justify-content: center
+        width: $trigger-width
         color: rgba(black, 0.7)
         line-height: 1
         cursor: pointer
-        background: $modal-bg
+        background: $trigger-color
         box-shadow: 0 2px 5px 0 rgba(black, 0.26)
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0) 
         user-select: none
         @include ease()
 
+        img
+            height: 100%
+            width: 100%
+            transition: opacity 0.3s ease-in-out
+            position: absolute
+            pointer-events: none
+
         &--active
             z-index: 10
 
         &:hover
-            background: mix(black, $modal-bg, 10)
+            background: mix(black, $trigger-color, 10)
+
+            img
+               opacity: 0.1 
+
+            h1
+                opacity: 1
+
+        h1 
+            position: relative 
+            font-family: 'Montserrat', Arial, sans-serif
+            font-size: calc(20px + 5vw)
+            font-weight: 700
+            color: #fff
+            letter-spacing: 0.02em
+            text-transform: uppercase
+            text-shadow: 0 0 0.15em #1da9cc
+            user-select: none
+            white-space: nowrap
+            filter: blur(0.007em)
+            animation: shake 2.5s linear forwards
+            animation-iteration-count: infinite
+            transform: rotate(-90deg)
+            pointer-events: none
+            opacity: 0
+            transition: opacity .3s ease-in-out
+        
+
+            span 
+                position: absolute
+                top: 0
+                left: 0
+                transform: translate(-50%, -50%)
+                -webkit-clip-path: polygon(10% 0%, 44% 0%, 70% 100%, 55% 100%)
+                        clip-path: polygon(10% 0%, 44% 0%, 70% 100%, 55% 100%)
+        
+
+            &::before,
+            &::after 
+                content: attr(data-text)
+                position: absolute
+                transform: translate(-50%, -50%)
+                top: 0
+                left: 0
+
+            &::before
+                -webkit-clip-path: polygon(0% 0%, 10% 0%, 55% 100%, 0% 100%)
+                        clip-path: polygon(0% 0%, 10% 0%, 55% 100%, 0% 100%)    
+
+            &::after
+                -webkit-clip-path: polygon(44% 0%, 100% 0%, 100% 100%, 70% 100%)
+                        clip-path: polygon(44% 0%, 100% 0%, 100% 100%, 70% 100%)
+
+        .anim
+            &::before 
+                animation: crack1 .5s 
+                animation-iteration-count: 1
+            
+
+            &::after 
+                animation: crack2 .5s 
+                animation-iteration-count: 1
+
+
+        @keyframes shake 
+            5%, 15%, 25%, 35%, 55%, 65%, 75%, 95% 
+                filter: blur(0.018em)
+                transform: translateY(0.018em) rotate(-90deg)
+            
+
+            10%, 30%, 40%, 50%, 70%, 80%, 90% 
+                filter: blur(0.01em)
+                transform: translateY(-0.018em) rotate(-90deg)
+            
+
+            20%, 60% 
+                filter: blur(0.03em)
+                transform: translate(-0.018em, 0.018em) rotate(-90deg)
+            
+
+            45%, 85% 
+                filter: blur(0.03em)
+                transform: translate(0.018em, -0.018em) rotate(-90deg)
+            
+
+            100% 
+                filter: blur(0.007em)
+                transform: translate(0) rotate(-9deg)
+            
+        
+
+        @keyframes crack1 
+            0%
+                transform: translate(-50%, -50%)
+            
+
+            100% 
+                transform: translate(-51%, -48%)
+            
+        
+
+        @keyframes crack2 
+            0%
+                transform: translate(-50%, -50%)
+            
+
+            100% 
+                transform: translate(-49%, -53%)
+            
+        
 
 #modal__temp
     will-change: transform, opacity
@@ -106,7 +236,7 @@ a
     left: 0
     right: 0
     bottom: 0
-    background: $modal-bg
+    background: $trigger-color
     transform: none
     opacity: 1
     transition: opacity 0.1s ease-out, transform $t cubic-bezier(0.23, 1, 0.32, 1)
@@ -115,43 +245,17 @@ a
 
 body
     height: 100vh
-    background: $red
+    background: $background-color
     
 img
     max-width: 100%
 
-.demo-btns
-    header
-        padding: 7vh 10vw
-        background: $modal-bg
-        display: flex
-        align-items: center
+.harmonics
+    display: flex
+    flex-direction: row
+    height: 100%
+    justify-content: space-between
 
-        h1
-            margin: 0
-            color: rgba(black, 0.54)
-            font-weight: 300
-
-    .info
-        background: $red
-        padding: 3vh 10vw
-        height: 70vh
-        display: flex
-        align-items: center
-        justify-content: center
-        flex-flow: column wrap
-
-    p
-        text-align: center
-        color: white
-
-    .link
-        font-size: 20px
-
-    .modal__trigger
-        margin-right: 3px
-        @media (max-width: 640px)
-            margin-bottom: ($space / 3)
 
 .demo-close
     position: absolute
@@ -187,4 +291,3 @@ img
             transform: rotate(180deg) scale(1.1)
 
         
-            
