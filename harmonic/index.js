@@ -1,3 +1,8 @@
+// make it easier for yourself by not having to type as much to select an element
+function $qsa(el) {
+  return document.querySelectorAll(el);
+}
+
 var Modal = (function() {
 
     var trigger = $qsa('.modal__trigger'); // what you click to activate the modal
@@ -10,10 +15,7 @@ var Modal = (function() {
     var contentDelay = 400; // duration after you click the button and wait for the content to show
     var len = trigger.length;
   
-    // make it easier for yourself by not having to type as much to select an element
-    function $qsa(el) {
-      return document.querySelectorAll(el);
-    }
+    
   
     var getId = function(event) {
   
@@ -195,4 +197,11 @@ var Modal = (function() {
   
   }());
   
+  window.onload = (event) => {
+    preloader = $qsa('#preloader')[0];
+    preloader.style.opacity = 0;
+    setTimeout(() => {preloader.parentNode.removeChild(preloader)}, 5000);
+    
+  }
+
   Modal.init();
