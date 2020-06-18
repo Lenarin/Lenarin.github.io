@@ -109,7 +109,7 @@ a {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 150px;
+  width: 100%;
   color: rgba(0, 0, 0, 0.7);
   line-height: 1;
   cursor: pointer;
@@ -369,6 +369,25 @@ img {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.harmonics .filler {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.harmonics .filler p {
+  color: white;
+  font-size: large;
+  font-weight: 800;
 }
 
 .demo-close {
