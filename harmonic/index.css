@@ -70,7 +70,7 @@ a {
 }
 
 .modal__dialog {
-  max-width: 100VW;
+  width: 100VW;
   height: 100%;
 }
 
